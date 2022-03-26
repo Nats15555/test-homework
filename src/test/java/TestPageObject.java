@@ -14,9 +14,10 @@ import org.junit.Test;
 
 public class TestPageObject {
 
-    WebDriver driver = new ChromeDriver();
-    LoginPage loginPage = new LoginPage(driver);
-    MainPage mainPage = new MainPage(driver);
+    private final WebDriver driver = new ChromeDriver();
+    private LoginPage loginPage = new LoginPage(driver);
+    private MainPage mainPage = new MainPage(driver);
+    private final User user = new User("79697115322", "doom800300", "Niki Niko");
 
     @Before
     public void start(){
@@ -24,18 +25,19 @@ public class TestPageObject {
     }
 
     @Test
+    public void authorization(){
+        mainPage = loginPage.isAuth(user);
+        assertTrue(mainPage.intoMainPage(user));
+    }
+
+    @Test
     public void authorizationAndLogOutTest() {
-        User user = new User("79697115322", "doom800300", "Niki Niko");
-        assertTrue(loginPage.isAuth(user).intoMainPage(user));
+        mainPage = loginPage.isAuth(user);
+        assertTrue(mainPage.intoMainPage(user));
         assertTrue(mainPage.logOut().intoLoginPage());
         /*мое тестирую xpath
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         driver.findElement(By.xpath(MainPageTopNavigator.MUSIC.getXpath())).click();*/
     }
-
-    /*@Test
-    public void logOutTest(){
-        assertTrue(mainPage.logOut().intoLoginPage());
-    }*/
 }
 
