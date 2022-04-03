@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import page.main.MainPage;
-import login.data.User;
+import data.login.User;
 
 public class LoginPage {
     private final String idEmail = "field_email";

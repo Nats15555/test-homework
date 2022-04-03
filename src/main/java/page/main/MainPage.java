@@ -5,8 +5,9 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-import login.data.User;
+import data.login.User;
 import page.login.LoginPage;
+import page.massage.MassagePage;
 
 
 public class MainPage {
@@ -19,7 +20,7 @@ public class MainPage {
         this.driver = driver;
     }
 
-    public boolean intoMainPage(User user) {
+    public boolean authMainPage(User user) {
         String getData = driver.findElement(By.xpath(MainPageRightNavigator.PAGE.getXpath() + "/div")).getText();
         if (getData.equals(user.getNameAndSurname())) {
             return true;
@@ -29,13 +30,18 @@ public class MainPage {
     }
 
     public LoginPage logOut() {
-        LoginPage loginPage = new LoginPage(driver);
         driver.findElement(By.xpath(xpathTopBar)).click();
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         driver.findElement(By.xpath(logOutButton)).click();
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         driver.findElement(By.id("hook_FormButton_logoff.confirm_not_decorate")).click();
-        return loginPage;
+        return new LoginPage(driver);
+    }
+
+    public MassagePage openMassagePage(){
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.findElement(By.xpath(MainPageTopNavigator.MESSAGES.getXpath())).click();
+        return new MassagePage(driver);//передавать сюда то от чего мы отталкиваемся
     }
 
 
