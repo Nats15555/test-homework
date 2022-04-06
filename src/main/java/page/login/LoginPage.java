@@ -18,10 +18,20 @@ public class LoginPage {
         this.driver = driver;
     }
 
-    public MainPage isAuth(User user) {
+    public MainPage doLogin(User user) {
         MainPage mainPage = new MainPage(driver);
         driver.findElement(By.id(idEmail)).sendKeys(user.getLogin());
         driver.findElement(By.id(idPassword)).sendKeys(user.getPassword());
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+        driver.findElement(By.xpath(xpathBottom)).click();
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        return mainPage;
+    }
+
+    public MainPage doLogin(String login, String password) {
+        MainPage mainPage = new MainPage(driver);
+        driver.findElement(By.id(idEmail)).sendKeys(login);
+        driver.findElement(By.id(idPassword)).sendKeys(password);
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         driver.findElement(By.xpath(xpathBottom)).click();
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);

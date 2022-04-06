@@ -6,16 +6,15 @@ import org.junit.Test;
 import generator.massage.RandomGeneratorMassage;
 import test.AbstractTest;
 
-public class TestSendMassageUser extends AbstractTest implements TestSendMassage {
+public class TestSendMassageUser extends AbstractTest{
 
     private final String massage = RandomGeneratorMassage.getMassage();//можно как тро
 
     @Test
     public void sendMassage() {
-        boolean resultTest = mainPage.openMassageFriendOnMainPage()
+        Assert.assertTrue(mainPage.openMassageFriendOnMainPage()
                 .sendMassage(massage)
-                .chekMassage(massage);
-        Assert.assertTrue(resultTest);
+                .chekMassage(massage));
         driver.close();
     }
 

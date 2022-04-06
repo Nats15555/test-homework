@@ -23,7 +23,7 @@ public class MainPage {
         this.driver = driver;
     }
 
-    public boolean authMainPage(User user) {
+    public boolean isAuth(User user) {
         String getData = driver.findElement(By.xpath(MainPageRightNavigator.PAGE.getXpath() + "/div")).getText();
         if (getData.equals(user.getNameAndSurname())) {
             return true;

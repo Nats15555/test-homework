@@ -9,7 +9,7 @@ public class TestPageObject extends AbstractTest {
 
    @Test
     public void authorization(){
-       Assert.assertTrue(mainPage.authMainPage(user));
+       Assert.assertTrue(mainPage.isAuth(user));
        driver.close();
     }
 

@@ -18,8 +18,7 @@ public abstract class AbstractTest {
     @Before
     public void start(){
         driver.get("https://ok.ru");
-        mainPage = loginPage.isAuth(user);
+        mainPage = loginPage.doLogin(user);
     }
-
 
 }
