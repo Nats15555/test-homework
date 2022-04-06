@@ -12,16 +12,14 @@ import org.openqa.selenium.WebElement;
 import data.massage.Massage;
 
 public class MailBlock {
-    private final WebDriver driver;
-    private final String mainXpathBlock = "//*[@id=\"msg_layer\"]";
+    private final WebElement mainXpathBlock;// веб элепмент обращаться вебэлемент.фаинт
 
     public MailBlock(WebDriver driver) {
-        this.driver = driver;
+        mainXpathBlock = driver.findElement(By.xpath("//*[@id=\"msg_layer\"]"));
     }
 
     public Set<Massage> getUserMassages() {
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        List<WebElement> allMassage = driver.findElements(By.xpath(mainXpathBlock + "//*[contains(@class,\"group\")]"));
+        List<WebElement> allMassage = mainXpathBlock.findElements(By.xpath("//*[contains(@class,\"group\")]"));
         Set<Massage> massageList = new HashSet<>();
         for (WebElement temp : allMassage) {
             String[] massageFields = temp.getText().split("\\n");

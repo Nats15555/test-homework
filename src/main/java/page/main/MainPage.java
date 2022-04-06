@@ -1,9 +1,12 @@
 package page.main;
 
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 import data.login.User;
 import page.login.LoginPage;
@@ -38,10 +41,20 @@ public class MainPage {
         return new LoginPage(driver);
     }
 
-    public MassagePage openMassagePage(){
+    public MassagePage openMassagePageUseTopMenu(){
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.findElement(By.xpath(MainPageTopNavigator.MESSAGES.getXpath())).click();
         return new MassagePage(driver);//передавать сюда то от чего мы отталкиваемся
+    }
+
+    public MassagePage openMassageFriendOnMainPage(){
+        Actions action = new Actions(driver);
+        WebElement elem = driver.findElement(By.xpath("//*[contains(@class,\"online-fr_i h-mod online-fr_hide-icons\")]"));
+        action.moveToElement(elem);
+        action.perform();
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.findElement(By.xpath("//*[contains(@data-l,\"t,sendMessage\")]")).click();
+        return new MassagePage(driver);
     }
 
 

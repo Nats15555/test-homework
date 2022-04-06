@@ -1,3 +1,5 @@
+package test;
+
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -10,7 +12,8 @@ public abstract class AbstractTest {
     protected final WebDriver driver = new ChromeDriver();
     protected LoginPage loginPage = new LoginPage(driver);
     protected MainPage mainPage = new MainPage(driver);
-    protected final User user = new User("79697115322", "doom800300", "Niki Niko");
+    protected final User user = new User("technopolisBot145", "technopolis16"
+            , "technopolisBot1 technopolisBot1");
 
     @Before
     public void start(){
