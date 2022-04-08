@@ -9,7 +9,7 @@ import org.openqa.selenium.WebDriver;
 import block.MailBlock;
 import data.massage.Massage;
 
-public class MassagePage {
+public class MassagePage implements AbstractMassagePage{
 
     private final WebDriver driver;
     private final MailBlock mailBlock;
