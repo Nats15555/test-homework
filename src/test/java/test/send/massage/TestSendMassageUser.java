@@ -8,7 +8,7 @@ import test.AbstractTest;
 
 public class TestSendMassageUser extends AbstractTest{
 
-    private final String massage = RandomGeneratorMassage.getMassage();//можно как тро
+    private final String massage = RandomGeneratorMassage.getMassage();
 
     @Test
     public void sendMassage() {
