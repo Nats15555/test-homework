@@ -11,6 +11,36 @@ public class User {
         this.nameAndSurname = nameAndSurname;
     }
 
+    public User() {
+    }
+
+    public static class UserBuilder {
+        private User user;
+
+        public UserBuilder() {
+            this.user = new User();
+        }
+
+        public UserBuilder withLogin(String login){
+            user.setLogin(login);
+            return this;
+        }
+
+        public UserBuilder withPassword(String password){
+            user.setPassword(password);
+            return this;
+        }
+
+        public UserBuilder withNameAndSurname(String nameAndSurname){
+            user.setNameAndSurname(nameAndSurname);
+            return this;
+        }
+
+        public User build(){
+            return user;
+        }
+    }
+
     public String getLogin() {
         return login;
     }

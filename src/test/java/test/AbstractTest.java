@@ -12,8 +12,13 @@ public abstract class AbstractTest {
     protected final WebDriver driver = new ChromeDriver();
     protected LoginPage loginPage = new LoginPage(driver);
     protected MainPage mainPage = new MainPage(driver);
-    protected final User user = new User("technopolisBot145", "technopolis16"
-            , "technopolisBot1 technopolisBot1");
+    protected final User user = new User.UserBuilder()
+            .withLogin("technopolisBot145")
+            .withPassword("technopolis16")
+            .withNameAndSurname("technopolisBot1 technopolisBot1")
+            .build();
+//    protected final User user = new User("technopolisBot145", "technopolis16"
+//            , "technopolisBot1 technopolisBot1"); //старый вариант без билдера
 
     @Before
     public void start(){
