@@ -22,17 +22,17 @@ public class User {
         }
 
         public UserBuilder withLogin(String login){
-            user.setLogin(login);
+            user.login = login;
             return this;
         }
 
         public UserBuilder withPassword(String password){
-            user.setPassword(password);
+            user.password = password;
             return this;
         }
 
         public UserBuilder withNameAndSurname(String nameAndSurname){
-            user.setNameAndSurname(nameAndSurname);
+            user.nameAndSurname = nameAndSurname;
             return this;
         }
 

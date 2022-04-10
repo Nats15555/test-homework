@@ -29,13 +29,11 @@ public class LoginPage {
     }
 
     public MainPage doLogin(String login, String password) {
-        MainPage mainPage = new MainPage(driver);
-        driver.findElement(By.id(idEmail)).sendKeys(login);
-        driver.findElement(By.id(idPassword)).sendKeys(password);
-        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-        driver.findElement(By.xpath(xpathBottom)).click();
-        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-        return mainPage;
+        User user = new User.UserBuilder()
+                .withLogin(login)
+                .withPassword(password)
+                .build();
+        return doLogin(user);
     }
 
     public boolean intoLoginPage(){
