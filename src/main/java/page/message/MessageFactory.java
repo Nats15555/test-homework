@@ -1,13 +1,13 @@
-package page.massage;
+package page.message;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class MassageFactory {
+public class MessageFactory {
 
-    public MassagePageInterface get(WebDriver driver){
+    public MessagePageInterface get(WebDriver driver){
         if(isButtonPresent(driver)){
-            return new MassagePage(driver);
+            return new MessagePage(driver);
         }
         return null;//потому что у нас всего 1 страница
     }

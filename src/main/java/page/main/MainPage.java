@@ -9,9 +9,9 @@ import org.openqa.selenium.interactions.Actions;
 
 import data.login.User;
 import page.login.LoginPage;
-import page.massage.MassageFactory;
-import page.massage.MassagePage;
-import page.massage.MassagePageInterface;
+import page.message.MessageFactory;
+import page.message.MessagePage;
+import page.message.MessagePageInterface;
 
 
 public class MainPage {
@@ -43,20 +43,20 @@ public class MainPage {
     }
 
     @Deprecated
-    public MassagePage openMassagePageUseTopMenu(){//метод просто для тесов себя
+    public MessagePage openMassagePageUseTopMenu(){//метод просто для тесов себя
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.findElement(By.xpath(MainPageTopNavigator.MESSAGES.getXpath())).click();
-        return new MassagePage(driver);
+        return new MessagePage(driver);
     }
 
-    public MassagePageInterface openMassageFriendOnMainPage(){
+    public MessagePageInterface openMessageFriendOnMainPage(){
         Actions action = new Actions(driver);
         WebElement elem = driver.findElement(By.xpath("//*[contains(@class,\"online-fr_i h-mod online-fr_hide-icons\")]"));
         action.moveToElement(elem);
         action.perform();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.findElement(By.xpath("//*[contains(@data-l,\"t,sendMessage\")]")).click();
-        MassageFactory massageFactory = new MassageFactory();
+        MessageFactory massageFactory = new MessageFactory();
         return massageFactory.get(driver);
     }
 
