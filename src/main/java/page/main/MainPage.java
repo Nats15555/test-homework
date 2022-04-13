@@ -12,6 +12,7 @@ import page.login.LoginPage;
 import page.message.MessageFactory;
 import page.message.MessagePage;
 import page.message.MessagePageInterface;
+import page.music.MusicPage;
 
 
 public class MainPage {
@@ -58,6 +59,12 @@ public class MainPage {
         driver.findElement(By.xpath("//*[contains(@data-l,\"t,sendMessage\")]")).click();
         MessageFactory massageFactory = new MessageFactory();
         return massageFactory.get(driver);
+    }
+
+    public MusicPage openMusicOnMainPage(){
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.findElement(By.xpath(MainPageTopNavigator.MUSIC.getXpath())).click();
+        return new MusicPage(driver);
     }
 
 

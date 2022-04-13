@@ -1,11 +1,11 @@
-package test.page;
+package test.page.login;
 
 import org.junit.Assert;
 import org.junit.Test;
 
 import test.AbstractTest;
 
-public class TestPageObject extends AbstractTest {
+public class TestLoginPage extends AbstractTest {
 
    @Test
     public void authorization(){

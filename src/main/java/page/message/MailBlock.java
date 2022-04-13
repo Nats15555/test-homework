@@ -1,4 +1,4 @@
-package block;
+package page.message;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,14 +10,14 @@ import org.openqa.selenium.WebElement;
 import data.message.Message;
 
 public class MailBlock {
-    private final WebElement mainXpathBlock;
+    private final WebElement webMailElement;
 
     public MailBlock(WebDriver driver) {
-        mainXpathBlock = driver.findElement(By.xpath("//*[@id=\"msg_layer\"]"));
+        webMailElement = driver.findElement(By.id("msg_layer"));
     }
 
     public List<Message> getUserMassages() {
-        List<WebElement> allMessage = mainXpathBlock.findElements(By.xpath("//*[contains(@data-tsid,\"message_root\")]"));
+        List<WebElement> allMessage = webMailElement.findElements(By.xpath("//*[contains(@data-tsid,\"message_root\")]"));
         List<Message> messageList = new ArrayList<>();
 
         for (WebElement temp : allMessage) {
