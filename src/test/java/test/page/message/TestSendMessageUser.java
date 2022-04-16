@@ -1,4 +1,4 @@
-package test.send.massage;
+package test.page.message;
 
 import org.junit.Assert;
 import org.junit.Test;

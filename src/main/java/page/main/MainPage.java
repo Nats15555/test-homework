@@ -13,6 +13,7 @@ import page.message.MessageFactory;
 import page.message.MessagePage;
 import page.message.MessagePageInterface;
 import page.music.MusicPage;
+import page.photo.PhotoPage;
 
 
 public class MainPage {
@@ -65,6 +66,13 @@ public class MainPage {
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.findElement(By.xpath(MainPageTopNavigator.MUSIC.getXpath())).click();
         return new MusicPage(driver);
+    }
+
+    public PhotoPage openPhotoPage(){
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.findElement(By.xpath(MainPageRightNavigator.PHOTO.getXpath())).click();
+
+        return new PhotoPage(driver);
     }
 
 
