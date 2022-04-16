@@ -11,7 +11,6 @@ public class TestAddMusic extends AbstractTest {
     public void addThreeSongs() {
         Assert.assertTrue(mainPage.openMusicOnMainPage()
                 .addTreeSongsAndCheck());
-        driver.close();
     }
 
 }

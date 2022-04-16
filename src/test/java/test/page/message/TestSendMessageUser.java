@@ -15,7 +15,6 @@ public class TestSendMessageUser extends AbstractTest{
         Assert.assertTrue(mainPage.openMessageFriendOnMainPage()
                 .sendMessage(message)
                 .chekMessage(message));
-        driver.close();
     }
 
 }

@@ -17,6 +17,5 @@ public class TestAddPhoto extends AbstractTest {
         Assert.assertTrue( mainPage.openPhotoPage()
                 .addNewPhoto(photoAvatarPath.toString())
                 .checkAddingPhoto());
-        driver.close();
     }
 }

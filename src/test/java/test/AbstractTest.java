@@ -1,5 +1,6 @@
 package test;
 
+import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -24,6 +25,11 @@ public abstract class AbstractTest {
     public void start(){
         driver.get("https://ok.ru");
         mainPage = loginPage.doLogin(user);
+    }
+
+    @After
+    public void end(){
+        driver.close();
     }
 
 }

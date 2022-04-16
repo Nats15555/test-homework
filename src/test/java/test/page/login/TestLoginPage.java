@@ -10,13 +10,11 @@ public class TestLoginPage extends AbstractTest {
    @Test
     public void authorization(){
        Assert.assertTrue(mainPage.isAuth(user));
-       driver.close();
     }
 
     @Test
     public void authorizationAndLogOutTest() {
         Assert.assertTrue(mainPage.logOut().intoLoginPage());
-        driver.close();
     }
 }
 
