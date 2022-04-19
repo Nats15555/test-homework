@@ -1,20 +1,24 @@
 package test.page.login;
 
-import org.junit.Assert;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import test.AbstractTest;
 
 public class TestLoginPage extends AbstractTest {
 
-   @Test
-    public void authorization(){
-       Assert.assertTrue(mainPage.isAuth(user));
+    @DisplayName("Тест на авторизацию")
+    @Test
+    public void authorization() {
+        assertTrue(mainPage.isAuth(user));
     }
 
     @Test
+    @Disabled("Не использовать данны тест, он был нужен на ранних версиях проекта")
     public void authorizationAndLogOutTest() {
-        Assert.assertTrue(mainPage.logOut().intoLoginPage());
+        assertTrue(mainPage.logOut().intoLoginPage());
     }
 }
 

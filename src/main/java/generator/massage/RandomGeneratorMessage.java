@@ -11,6 +11,6 @@ public class RandomGeneratorMessage {
     private static final List<String> messages = Arrays.asList("Привет","Как ты","Как дела");
 
     public static String getMessage(){
-        return messages.get(1 + RANDOM.nextInt(messages.size())) + (1 + RANDOM.nextInt());
+        return messages.get(1 + RANDOM.nextInt(messages.size() - 1)) + (1 + RANDOM.nextInt());
     }
 }

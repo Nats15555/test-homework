@@ -1,7 +1,8 @@
 package test;
 
-import org.junit.After;
-import org.junit.Before;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -21,13 +22,13 @@ public abstract class AbstractTest {
 //    protected final User user = new User("technopolisBot145", "technopolis16"
 //            , "technopolisBot1 technopolisBot1"); //старый вариант без билдера
 
-    @Before
+    @BeforeEach
     public void start(){
         driver.get("https://ok.ru");
         mainPage = loginPage.doLogin(user);
     }
 
-    @After
+    @AfterEach
     public void end(){
         driver.close();
     }
