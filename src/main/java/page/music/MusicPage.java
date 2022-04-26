@@ -10,13 +10,16 @@ public class MusicPage {
     private final MusicBlock musicBlock;
 
     public MusicPage(WebDriver driver) {
-        this.musicBlock = new MusicBlock(driver) ;
+        this.musicBlock = new MusicBlock(driver);
     }
 
-    public boolean addTreeSongsAndCheck(){
-        List<Music> musicList = musicBlock.addThreeTrendingSong();
+    public List<Music> addTreeSongs() {
+        return musicBlock.addThreeTrendingSong();
+    }
+
+    public boolean checkCountSongs(List<Music> addMusicList, int count) {
         musicBlock.clickMyMusic();
         List<Music> myMusicList = musicBlock.getMusic();
-        return (int) musicList.stream().filter(myMusicList::contains).count() == 3;
+        return (int) addMusicList.stream().filter(myMusicList::contains).count() == count;
     }
 }

@@ -9,9 +9,9 @@ import page.main.MainPage;
 import data.login.User;
 
 public class LoginPage {
-    private final String idEmail = "field_email";
-    private final String idPassword = "field_password";
-    private final String xpathBottom = "//*[contains(@class,\"login-form-actions\")]/input";
+    private final By idEmail = By.id("field_email");
+    private final By idPassword = By.id("field_password");
+    private final By xpathBottom = By.xpath("//*[contains(@class,\"login-form-actions\")]/input");
     private final WebDriver driver;
 
     public LoginPage(WebDriver driver) {
@@ -20,10 +20,10 @@ public class LoginPage {
 
     public MainPage doLogin(User user) {
         MainPage mainPage = new MainPage(driver);
-        driver.findElement(By.id(idEmail)).sendKeys(user.getLogin());
-        driver.findElement(By.id(idPassword)).sendKeys(user.getPassword());
+        driver.findElement(idEmail).sendKeys(user.getLogin());
+        driver.findElement(idPassword).sendKeys(user.getPassword());
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-        driver.findElement(By.xpath(xpathBottom)).click();
+        driver.findElement(xpathBottom).click();
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         return mainPage;
     }
@@ -38,6 +38,6 @@ public class LoginPage {
 
     public boolean intoLoginPage(){
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-        return driver.findElement(By.id(idEmail)).isDisplayed();
+        return driver.findElement(idEmail).isDisplayed();
     }
 }
