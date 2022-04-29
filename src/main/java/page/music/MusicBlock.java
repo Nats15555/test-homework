@@ -35,7 +35,7 @@ public class MusicBlock {
 
     public List<Music> addThreeTrendingSong() {
         List<WebElement> allMusic = webMusicElement.findElements(By.xpath("//*[contains(@data-l,\"t,top_tracks_list\")]" +
-                "/slot/top-tracks-list/wm-tracks-list/main/wm-track[position() <= 3]"));//посмотреть может можно как то упростить
+                "/slot/top-tracks-list/wm-tracks-list/main/wm-track[position() <= 3]"));
         List<Music> musicList = new ArrayList<>();
 
         Actions action = new Actions(driver);

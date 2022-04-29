@@ -1,9 +1,10 @@
 package page.login;
 
-import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import page.main.MainPage;
 import data.login.User;
@@ -18,26 +19,27 @@ public class LoginPage {
         this.driver = driver;
     }
 
+    protected void checkLoaded() {
+        WebDriverWait wait = new WebDriverWait(driver, 3);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(idEmail));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(idPassword));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(xpathBottom));
+    }
+
     public MainPage doLogin(User user) {
-        MainPage mainPage = new MainPage(driver);
+        checkLoaded();
         driver.findElement(idEmail).sendKeys(user.getLogin());
         driver.findElement(idPassword).sendKeys(user.getPassword());
-        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         driver.findElement(xpathBottom).click();
-        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-        return mainPage;
+        return new MainPage(driver);
     }
 
     public MainPage doLogin(String login, String password) {
+        checkLoaded();
         User user = new User.UserBuilder()
                 .withLogin(login)
                 .withPassword(password)
                 .build();
         return doLogin(user);
-    }
-
-    public boolean intoLoginPage(){
-        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-        return driver.findElement(idEmail).isDisplayed();
     }
 }

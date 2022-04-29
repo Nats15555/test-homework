@@ -1,31 +1,44 @@
 package page.message;
 
-import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class MessagePage implements MessagePageInterface {
 
     private final WebDriver driver;
     private final MailBlock mailBlock;
+    private final By messageBlock = By.xpath("//*[@id=\"msg_layer\"]");
+    private final By sendMessageField = By.xpath("//*[@data-l=\"t,msgInput\"]");
+    private final By sendButton = By.xpath("//*[@data-l=\"t,sendButton\"]");
 
     public MessagePage(WebDriver driver) {
         this.driver = driver;
         this.mailBlock = new MailBlock(driver);
     }
 
+    protected void checkLoaded() {
+        WebDriverWait wait = new WebDriverWait(driver, 3);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(messageBlock));
+    }
+
     public MessagePage openDialog(String identification) {
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        driver.findElement(By.xpath("//*[@id=\"msg_layer\"]//*[contains(@data-item-id,'" + identification + "')]")).click();
+        checkLoaded();
+        driver.findElement(By.xpath(messageBlock + "//*[contains(@data-item-id,'" + identification + "')]")).click();
         return this;
     }
 
-    public MessagePage sendMessage(String message) {//отправка сообщения
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        driver.findElement(By.xpath("//*[@id=\"msg_layer\"]//*[@data-l=\"t,msgInput\"]")).sendKeys(message);
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        driver.findElement(By.xpath("//*[@id=\"msg_layer\"]//*[@data-l=\"t,sendButton\"]")).click();
+    protected void checkLoadedMessages() {
+        WebDriverWait wait = new WebDriverWait(driver, 3);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(sendMessageField));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(sendButton));
+    }
+
+    public MessagePage sendMessage(String message) {
+        checkLoadedMessages();
+        driver.findElement(sendMessageField).sendKeys(message);
+        driver.findElement(sendButton).click();
         return this;
     }
 
