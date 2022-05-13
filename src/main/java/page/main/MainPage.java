@@ -1,5 +1,6 @@
 package page.main;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -10,6 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import data.login.User;
+import page.idea.IdeaPage;
 import page.login.LoginPage;
 import page.message.MessageFactory;
 import page.message.MessagePage;
@@ -41,6 +43,7 @@ public class MainPage {
     protected void checkLoaded() {
         WebDriverWait wait = new WebDriverWait(driver, 3);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(MainPageRightNavigator.PAGE.getXpath())));
+
         wait.until(ExpectedConditions.visibilityOfElementLocated(xpathTopBar));
     }
 
@@ -72,19 +75,25 @@ public class MainPage {
     }
 
     public MusicPage openMusicOnMainPage() {
-        checkLoaded();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        WebDriverWait wait = new WebDriverWait(driver, 5);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(MainPageTopNavigator.MUSIC.getXpath())));
         driver.findElement(By.xpath(MainPageTopNavigator.MUSIC.getXpath())).click();
         return new MusicPage(driver);
     }
 
     public PhotoPage openPhotoPage() {
-        checkLoaded();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        WebDriverWait wait = new WebDriverWait(driver, 3);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(MainPageRightNavigator.PHOTO.getXpath())));
         driver.findElement(By.xpath(MainPageRightNavigator.PHOTO.getXpath())).click();
 
         return new PhotoPage(driver);
     }
 
+    public IdeaPage openIdeaPage() {
+        WebDriverWait wait = new WebDriverWait(driver, 3);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class,\"add-stub al add-stub__hor __motivator-showcase-btn\")]")));
+        driver.findElement(By.xpath("//*[contains(@class,\"add-stub al add-stub__hor __motivator-showcase-btn\")]")).click();
 
+        return new IdeaPage(driver);
+    }
 }

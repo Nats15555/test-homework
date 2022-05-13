@@ -8,8 +8,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import data.music.Music;
+import page.main.MainPageRightNavigator;
 
 public class MusicBlock {
     private final WebDriver driver;
@@ -34,6 +37,9 @@ public class MusicBlock {
     }
 
     public List<Music> addThreeTrendingSong() {
+        WebDriverWait wait = new WebDriverWait(driver, 3);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@data-l,\"t,top_tracks_list\")]")));
+
         List<WebElement> allMusic = webMusicElement.findElements(By.xpath("//*[contains(@data-l,\"t,top_tracks_list\")]" +
                 "/slot/top-tracks-list/wm-tracks-list/main/wm-track[position() <= 3]"));
         List<Music> musicList = new ArrayList<>();
