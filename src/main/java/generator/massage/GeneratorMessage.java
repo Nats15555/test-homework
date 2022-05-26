@@ -1,16 +1,16 @@
 package generator.massage;
 
-import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
-public class RandomGeneratorMessage {
+import generator.RandomData;
 
-    public static final Random RANDOM = new SecureRandom();
+public class GeneratorMessage implements RandomData {
+
     private static final List<String> messages = Arrays.asList("Привет","Как ты","Как дела");
 
-    public static String getMessage(){
+    @Override
+    public String random() {
         return messages.get(1 + RANDOM.nextInt(messages.size() - 1)) + (1 + RANDOM.nextInt());
     }
 }

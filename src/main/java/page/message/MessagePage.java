@@ -2,10 +2,10 @@ package page.message;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class MessagePage implements MessagePageInterface {
+import page.LoadableComponent;
+
+public class MessagePage implements MessagePageInterface, LoadableComponent {//+
 
     private final WebDriver driver;
     private final MailBlock mailBlock;
@@ -18,25 +18,15 @@ public class MessagePage implements MessagePageInterface {
         this.mailBlock = new MailBlock(driver);
     }
 
-    protected void checkLoaded() {
-        WebDriverWait wait = new WebDriverWait(driver, 3);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(messageBlock));
-    }
-
     public MessagePage openDialog(String identification) {
-        checkLoaded();
+        chekLoadComponent(driver, 3, messageBlock);
         driver.findElement(By.xpath(messageBlock + "//*[contains(@data-item-id,'" + identification + "')]")).click();
         return this;
     }
 
-    protected void checkLoadedMessages() {
-        WebDriverWait wait = new WebDriverWait(driver, 3);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(sendMessageField));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(sendButton));
-    }
-
     public MessagePage sendMessage(String message) {
-        checkLoadedMessages();
+        chekLoadComponent(driver, 3, sendMessageField);
+        chekLoadComponent(driver, 3, sendButton);
         driver.findElement(sendMessageField).sendKeys(message);
         driver.findElement(sendButton).click();
         return this;

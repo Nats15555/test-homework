@@ -19,7 +19,7 @@ public class TestSendParameterizedMessage extends AbstractTest {
             .build();
 
     @BeforeEach
-    public void login(){
+    public void login() {
         mainPage = loginPage.doLogin(user);
     }
 

@@ -15,13 +15,13 @@ public abstract class AbstractTest {
     protected MainPage mainPage = new MainPage(driver);
 
     @BeforeEach
-    public void start(){
+    public void start() {
         driver.get("https://ok.ru");
     }
 
     @AfterEach
-    public void end(){
-        driver.close();
+    public void end() {
+        //driver.close();
     }
 
 }

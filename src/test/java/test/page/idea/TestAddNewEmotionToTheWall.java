@@ -5,7 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import data.login.User;
-import generator.massage.RandomGeneratorMessage;
+import generator.massage.GeneratorMessage;
 import test.AbstractTest;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -17,7 +17,7 @@ public class TestAddNewEmotionToTheWall extends AbstractTest {
             .withPassword("technopolis16")
             .withNameAndSurname("technopolisBot1 technopolisBot1")
             .build();
-    private final String message = RandomGeneratorMessage.getMessage();
+    private final String message = new GeneratorMessage().random();
 
     @BeforeEach
     public void login() {

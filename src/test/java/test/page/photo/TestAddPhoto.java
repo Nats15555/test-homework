@@ -23,7 +23,7 @@ public class TestAddPhoto extends AbstractTest {
     private final Path photoAvatarPath = new File("src/main/resources/avatar.png").getAbsoluteFile().toPath();
 
     @BeforeEach
-    public void login(){
+    public void login() {
         mainPage = loginPage.doLogin(user);
     }
 

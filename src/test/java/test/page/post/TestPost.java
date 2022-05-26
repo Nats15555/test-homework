@@ -1,31 +1,34 @@
-package test.page.login;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
+package test.page.post;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import data.login.User;
+import data.post.Post;
+import generator.post.GeneratorPost;
 import test.AbstractTest;
 
-public class TestLoginPage extends AbstractTest {
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+public class TestPost extends AbstractTest {
 
     protected final User user = new User.UserBuilder()
             .withLogin("technopolisBot145")
             .withPassword("technopolis16")
             .withNameAndSurname("technopolisBot1 technopolisBot1")
             .build();
+    private final Post post = new Post(new GeneratorPost().random());
 
     @BeforeEach
     public void login() {
         mainPage = loginPage.doLogin(user);
     }
 
-    @DisplayName("Тест на авторизацию")
+    @DisplayName("Тест на выкладывание поста")
     @Test
-    public void authorization() {
-        assertTrue(mainPage.isAuth(user));
+    public void addNewPost() {
+        assertTrue(mainPage.openPostPage().cratePost(post).checkPostDisplay(post));
     }
-}
 
+}

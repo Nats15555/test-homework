@@ -8,15 +8,16 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import data.music.Music;
-import page.main.MainPageRightNavigator;
+import page.LoadableComponent;
 
-public class MusicBlock {
+public class MusicBlock implements LoadableComponent {//+
     private final WebDriver driver;
     private final WebElement webMusicElement;
+    private final By xpathTopTracks = By.xpath("//*[contains(@data-l,\"t,top_tracks_list\")]");
+    private final By xpathAddMusic = By.xpath("//*[contains(@data-tsid,\"track_add\")]");
+    private final By xpathAllMusic = By.xpath("//*[contains(@data-l,\"t,tracks\")]");
 
     public MusicBlock(WebDriver driver) {
         this.driver = driver;
@@ -24,7 +25,8 @@ public class MusicBlock {
     }
 
     public List<Music> getMusic() {
-        List<WebElement> allMusic = webMusicElement.findElements(By.xpath("//*[contains(@data-l,\"t,tracks\")]"+
+        chekLoadComponent(driver, 5, xpathAllMusic);
+        List<WebElement> allMusic = webMusicElement.findElements(By.xpath("//*[contains(@data-l,\"t,tracks\")]" +
                 "/slot/wm-tracks-list/main/wm-track"));
         List<Music> musicList = new ArrayList<>();
 
@@ -37,11 +39,9 @@ public class MusicBlock {
     }
 
     public List<Music> addThreeTrendingSong() {
-        WebDriverWait wait = new WebDriverWait(driver, 3);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@data-l,\"t,top_tracks_list\")]")));
-
-        List<WebElement> allMusic = webMusicElement.findElements(By.xpath("//*[contains(@data-l,\"t,top_tracks_list\")]" +
-                "/slot/top-tracks-list/wm-tracks-list/main/wm-track[position() <= 3]"));
+        chekLoadComponent(driver, 3, xpathTopTracks);
+        List<WebElement> allMusic = webMusicElement.findElements(By.xpath("//*[contains(@data-l,\"t,top_tracks_list\")]"
+                + "/slot/top-tracks-list/wm-tracks-list/main/wm-track[position() <= 3]"));
         List<Music> musicList = new ArrayList<>();
 
         Actions action = new Actions(driver);
@@ -49,18 +49,14 @@ public class MusicBlock {
             driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
             action.moveToElement(temp);
             action.perform();
-            driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-            temp.findElement(By.xpath("//*[contains(@data-tsid,\"track_add\")]")).click();
+            chekLoadComponent(driver, 3, xpathAddMusic);
+            temp.findElement(xpathAddMusic).click();
 
             String[] musicFields = temp.getText().split("\n");
             musicList.add(new Music(musicFields[0], musicFields[1].split(" – ")[0]));
         }
 
         return musicList;
-    }
-
-    public void clickMyMusic() {
-        webMusicElement.findElement(By.xpath("//*[contains(@data-tsid,\"library\")]")).click();
     }
 
 }

@@ -8,16 +8,22 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import data.message.Message;
+import page.LoadableComponent;
 
-public class MailBlock {
+public class MailBlock implements LoadableComponent {//+
+    private final WebDriver driver;
     private final WebElement webMailElement;
+    public final By xpathMessage = By.xpath("//*[contains(@data-tsid,\"message_root\")]");
 
     public MailBlock(WebDriver driver) {
+        this.driver = driver;
+        chekLoadComponent(driver, 5, By.id("msg_layer"));
         webMailElement = driver.findElement(By.id("msg_layer"));
     }
 
     public List<Message> getUserMassages() {
-        List<WebElement> allMessage = webMailElement.findElements(By.xpath("//*[contains(@data-tsid,\"message_root\")]"));
+        chekLoadComponent(driver, 5, xpathMessage);
+        List<WebElement> allMessage = webMailElement.findElements(xpathMessage);
         List<Message> messageList = new ArrayList<>();
 
         for (WebElement temp : allMessage) {

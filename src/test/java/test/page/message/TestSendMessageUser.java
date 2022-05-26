@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
 
 import data.login.User;
-import generator.massage.RandomGeneratorMessage;
+import generator.massage.GeneratorMessage;
 import test.AbstractTest;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -18,10 +18,10 @@ public class TestSendMessageUser extends AbstractTest {
             .withPassword("technopolis16")
             .withNameAndSurname("technopolisBot1 technopolisBot1")
             .build();
-    private final String message = RandomGeneratorMessage.getMessage();
+    private final String message = new GeneratorMessage().random();
 
     @BeforeEach
-    public void login(){
+    public void login() {
         mainPage = loginPage.doLogin(user);
     }
 

@@ -6,10 +6,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import page.LoadableComponent;
 import page.main.MainPage;
 import data.login.User;
 
-public class LoginPage {
+public class LoginPage implements LoadableComponent {//+
     private final By idEmail = By.id("field_email");
     private final By idPassword = By.id("field_password");
     private final By xpathBottom = By.xpath("//*[contains(@class,\"login-form-actions\")]/input");
@@ -19,15 +20,10 @@ public class LoginPage {
         this.driver = driver;
     }
 
-    protected void checkLoaded() {
-        WebDriverWait wait = new WebDriverWait(driver, 3);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(idEmail));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(idPassword));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(xpathBottom));
-    }
-
     public MainPage doLogin(User user) {
-        checkLoaded();
+        chekLoadComponent(driver, 3, idEmail);
+        chekLoadComponent(driver, 3, idPassword);
+        chekLoadComponent(driver, 3, xpathBottom);
         driver.findElement(idEmail).sendKeys(user.getLogin());
         driver.findElement(idPassword).sendKeys(user.getPassword());
         driver.findElement(xpathBottom).click();
@@ -35,7 +31,6 @@ public class LoginPage {
     }
 
     public MainPage doLogin(String login, String password) {
-        checkLoaded();
         User user = new User.UserBuilder()
                 .withLogin(login)
                 .withPassword(password)
