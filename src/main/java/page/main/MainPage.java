@@ -31,6 +31,9 @@ public class MainPage implements LoadableComponent {
     private final By postField = By.xpath("//*[contains(@class,\"pf-head_itx\")]");
     private final By firstOnlineFriend = By.xpath("//*[contains(@class,\"online-fr_i h-mod online-fr_hide-icons\")]");
     private final By mailButton = By.xpath("//*[contains(@data-l,\"t,sendMessage\")]");
+    private final By languageList = By.xpath("//*[@class=\"ph-lang-select svelte-mvi5hm\"]");
+    private final By languageEng = By.xpath("//*[contains(@class,\"ph-lang-menu svelte-1jnupg5\")]/div[2]/div[1]");
+    private final By languageRu = By.xpath("//*[contains(@class,\"ph-lang-menu svelte-1jnupg5\")]/div[1]/div[1]");
     private PostBlock postBlock = null;
 
     public MainPage(WebDriver driver) {
@@ -50,6 +53,29 @@ public class MainPage implements LoadableComponent {
         driver.findElement(logOutButton).click();
         driver.findElement(hiddenLogOutButton).click();
         return new LoginPage(driver);
+    }
+
+    public MainPage clickLanguageList(){
+        chekLoadComponent(driver, 5, languageList);
+        driver.findElement(languageList).click();
+        return this;
+    }
+
+    public MainPage clickLanguageEng(){
+        chekLoadComponent(driver, 5, languageEng);
+        driver.findElement(languageEng).click();
+        return new MainPage(driver);
+    }
+
+    public boolean chekLanguage(String language){
+        chekLoadComponent(driver, 5, languageList);
+        return driver.findElement(languageList).getText().equals(language);
+    }
+
+    public MainPage clickLanguageRu(){
+        chekLoadComponent(driver, 5, languageRu);
+        driver.findElement(languageRu).click();
+        return new MainPage(driver);
     }
 
     public UserPage openUserPage(){
