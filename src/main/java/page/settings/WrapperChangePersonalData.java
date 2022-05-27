@@ -19,7 +19,7 @@ public class WrapperChangePersonalData implements LoadableComponent {
         changePersonalDataBlock = driver.findElement(By.className("modal-new_center"));
     }
 
-    public void changeNameAndSurname(String name, String surname){
+    public SettingsPage changeNameAndSurname(String name, String surname){
         chekLoadComponent(driver,5, fieldTxtName);
         chekLoadComponent(driver,5, fieldTxtSurname);
         chekLoadComponent(driver,5, buttonSave);
@@ -28,6 +28,7 @@ public class WrapperChangePersonalData implements LoadableComponent {
         changePersonalDataBlock.findElement(fieldTxtSurname).clear();
         changePersonalDataBlock.findElement(fieldTxtSurname).sendKeys(surname);
         changePersonalDataBlock.findElement(buttonSave).click();
+        return new SettingsPage(driver);
     }
 
 }

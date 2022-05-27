@@ -19,4 +19,11 @@ public class SettingsPage implements LoadableComponent {
         return new WrapperChangePersonalData(driver);
     }
 
+    public boolean checkChangePersonalData(String name, String surname){
+        chekLoadComponent(driver,5,xpathPersonalData);
+        System.out.println(driver.findElement(xpathPersonalData).getText());
+        return driver.findElement(xpathPersonalData).getText().contains(name)
+                && driver.findElement(xpathPersonalData).getText().contains(surname);
+    }
+
 }

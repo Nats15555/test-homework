@@ -29,11 +29,13 @@ public class TestNameChange extends AbstractTest {
 
     @DisplayName("Тест на смену имени и фамилии")
     @Test
-    public void addNewPost() {
+    public void changeNameAndSurname() {
         mainPage.openUserPage()
                 .clickSettingsPage()
                 .openChangePersonalData()
-                .changeNameAndSurname(randomName, randomSurname);
+                .changeNameAndSurname(randomName, randomSurname)
+                .checkChangePersonalData(randomName,randomSurname);
+        //нет штуки на смену обратно, так как в день раз можно поменять
         //assertTrue();
     }
 }

@@ -20,10 +20,8 @@ public class PostPage implements LoadableComponent {//+
     public MainPage cratePost(Post post) {
         chekLoadComponent(driver, 3, postBlock);
         chekLoadComponent(driver, 3, postButton);
-
         driver.findElement(postBlock).sendKeys(post.getContent());
         driver.findElement(postButton).click();
-
         return new MainPage(driver);
     }
 

@@ -9,6 +9,7 @@ import org.openqa.selenium.interactions.Actions;
 import data.login.User;
 import data.post.Post;
 import page.LoadableComponent;
+import page.group.GroupPage;
 import page.idea.IdeaPage;
 import page.login.LoginPage;
 import page.message.MessageFactory;
@@ -55,6 +56,12 @@ public class MainPage implements LoadableComponent {
         chekLoadComponent(driver, 5, By.xpath(MainPageRightNavigator.PAGE.getXpath()));
         driver.findElement(By.xpath(MainPageRightNavigator.PAGE.getXpath())).click();
         return new UserPage(driver);
+    }
+
+    public GroupPage openGroupPage(){
+        chekLoadComponent(driver, 5, By.xpath(MainPageRightNavigator.GROUPS.getXpath()));
+        driver.findElement(By.xpath(MainPageRightNavigator.GROUPS.getXpath())).click();
+        return new GroupPage(driver);
     }
 
     @Deprecated
