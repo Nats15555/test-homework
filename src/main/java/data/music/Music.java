@@ -2,10 +2,19 @@ package data.music;
 
 import java.util.Objects;
 
+/**
+ * Класс описывающий песню
+ */
 public class Music {
     private String name;
     private String author;
 
+    /**
+     * Конструктор для создания песни
+     *
+     * @param name Название песни
+     * @param author Автор песни
+     */
     public Music(String name, String author) {
         this.name = name;
         this.author = author;
@@ -32,18 +41,38 @@ public class Music {
         return Objects.hash(name, author);
     }
 
+    /**
+     * Получение названия песни
+     *
+     * @return
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Изменения названия песни
+     *
+     * @param name новое название песни
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * Получение автора песни
+     *
+     * @return
+     */
     public String getAuthor() {
         return author;
     }
 
+    /**
+     * Изменение автора песни
+     *
+     * @param author новый автор
+     */
     public void setAuthor(String author) {
         this.author = author;
     }

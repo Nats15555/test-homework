@@ -7,6 +7,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+/**
+ * Интерфейс показывает, что класс использует паттерн LoadableComponent
+ */
 public interface LoadableComponent {
 
     default void chekLoadComponent(WebDriver driver, long timeoutInSeconds, By checkedElement) {

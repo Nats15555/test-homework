@@ -2,6 +2,9 @@ package data.post;
 
 import java.util.Objects;
 
+/**
+ * Класс описывает пост
+ */
 public class Post {
 
     private String content;
@@ -30,10 +33,18 @@ public class Post {
                 '}';
     }
 
+    /**
+     * Получение теста поста
+     * @return
+     */
     public String getContent() {
         return content;
     }
 
+    /**
+     * Изменяем текст поста
+     * @param content новый текст поста
+     */
     public void setContent(String content) {
         this.content = content;
     }
