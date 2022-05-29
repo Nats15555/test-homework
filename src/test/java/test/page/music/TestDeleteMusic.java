@@ -2,8 +2,6 @@ package test.page.music;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,8 +11,10 @@ import data.music.Music;
 import page.music.MusicPage;
 import test.AbstractTest;
 
-public class TestAddMusic extends AbstractTest {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+public class TestDeleteMusic extends AbstractTest {
     protected final User user = new User.UserBuilder()
             .withLogin("technopolisBot145")
             .withPassword("technopolis16")
@@ -26,12 +26,11 @@ public class TestAddMusic extends AbstractTest {
         mainPage = loginPage.doLogin(user);
     }
 
-    @DisplayName("Тест на добавления 3 песен к себе")
+    @DisplayName("Тест на удаление песен, которые были переданы")
     @Test
-    public void addThreeSongs() {
+    public void deleteSongs() {
         MusicPage musicPage = mainPage.openMusicOnMainPage();
         List<Music> musicList = musicPage.addTreeSongs();
-        assertTrue(musicPage.clickMyMusic().checkCountSongs(musicList, 3));
+        assertTrue(musicList.containsAll(musicPage.clickMyMusic().deleteSongsFromList(musicList)));
     }
-
 }

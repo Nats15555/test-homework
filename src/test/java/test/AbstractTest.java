@@ -21,7 +21,7 @@ public abstract class AbstractTest {
 
     @AfterEach
     public void end() {
-        driver.close();
+        //driver.close();
     }
 
 }

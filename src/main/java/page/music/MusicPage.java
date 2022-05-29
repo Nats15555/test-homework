@@ -22,13 +22,17 @@ public class MusicPage implements LoadableComponent {//+
         return musicBlock.addThreeTrendingSong();
     }
 
-    public void clickMyMusic() {
+    public List<Music> deleteSongsFromList(List<Music> musicList) {
+        return musicBlock.deleteSongsFromList(musicList);
+    }
+
+    public MusicPage clickMyMusic() {
         chekLoadComponent(driver, 5, xpathClickMyMusic);
         driver.findElement(xpathClickMyMusic).click();
+        return this;
     }
 
     public boolean checkCountSongs(List<Music> addMusicList, int count) {
-        clickMyMusic();
         List<Music> myMusicList = musicBlock.getMusic();
         return (int) addMusicList.stream().filter(myMusicList::contains).count() == count;
     }

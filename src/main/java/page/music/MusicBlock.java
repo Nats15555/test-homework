@@ -17,6 +17,7 @@ public class MusicBlock implements LoadableComponent {//+
     private final WebElement webMusicElement;
     private final By xpathTopTracks = By.xpath("//*[contains(@data-l,\"t,top_tracks_list\")]");
     private final By xpathAddMusic = By.xpath("//*[contains(@data-tsid,\"track_add\")]");
+    private final By xpathRemoveMusic = By.xpath("//*[contains(@data-tsid,\"remove_track\")]");
     private final By xpathAllMusic = By.xpath("//*[contains(@data-l,\"t,tracks\")]");
 
     public MusicBlock(WebDriver driver) {
@@ -31,11 +32,15 @@ public class MusicBlock implements LoadableComponent {//+
         List<Music> musicList = new ArrayList<>();
 
         for (WebElement temp : allMusic) {
-            String[] musicFields = temp.getText().split("\\n");
-            musicList.add(new Music(musicFields[0], musicFields[1]));
+            musicList.add(getSong(temp));
         }
 
         return musicList;
+    }
+
+    private Music getSong(WebElement temp) {
+        String[] musicFields = temp.getText().split("\\n");
+        return new Music(musicFields[0], musicFields[1]);
     }
 
     public List<Music> addThreeTrendingSong() {
@@ -57,6 +62,28 @@ public class MusicBlock implements LoadableComponent {//+
         }
 
         return musicList;
+    }
+
+    public List<Music> deleteSongsFromList(List<Music> musicList) {
+        chekLoadComponent(driver, 5, xpathAllMusic);
+        List<WebElement> allMusic = webMusicElement.findElements(By.xpath("//*[contains(@data-l,\"t,tracks\")]" +
+                "/slot/wm-tracks-list/main/wm-track"));
+        List<Music> removeList = new ArrayList<>();
+
+        Actions action = new Actions(driver);
+        for (WebElement temp : allMusic) {
+            Music music = getSong(temp);
+            if (musicList.contains(music)) {
+                driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+                action.moveToElement(temp);
+                action.perform();
+                chekLoadComponent(driver, 3, xpathRemoveMusic);
+                temp.findElement(xpathRemoveMusic).click();
+                removeList.add(music);
+            }
+        }
+
+        return removeList;
     }
 
 }

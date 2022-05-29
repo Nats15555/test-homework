@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import data.login.User;
 import generator.user.data.Name;
 import generator.user.data.Surname;
+import page.settings.SettingsPage;
 import test.AbstractTest;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -17,8 +18,6 @@ public class TestNameChange extends AbstractTest {
             .withPassword("technopolis16")
             .withNameAndSurname("technopolisBot1 technopolisBot1")
             .build();
-    private final String reName = "technopolisBot1";
-    private final String reSurname = "technopolisBot1";
     private final String randomName = new Name().random();
     private final String randomSurname = new Surname().random();
 
@@ -30,12 +29,17 @@ public class TestNameChange extends AbstractTest {
     @DisplayName("Тест на смену имени и фамилии")
     @Test
     public void changeNameAndSurname() {
-        mainPage.openUserPage()
-                .clickSettingsPage()
+        SettingsPage settingsPage = mainPage.clickSettingsPage()
                 .openChangePersonalData()
                 .changeNameAndSurname(randomName, randomSurname)
-                .checkChangePersonalData(randomName,randomSurname);
-        //нет штуки на смену обратно, так как в день раз можно поменять
-        //assertTrue();
+                .refresh();
+        assertTrue(settingsPage.checkChangePersonalData(randomName, randomSurname));
+        settingsPage.clickImgOK().clickSettingsPage()
+                .openChangePersonalData()
+                .changeNameAndSurname(user.getNameAndSurname().split(" ")[0]
+                        , user.getNameAndSurname().split(" ")[1])
+                .refresh();
+        assertTrue(settingsPage.checkChangePersonalData(user.getNameAndSurname().split(" ")[0]
+                , user.getNameAndSurname().split(" ")[1]));
     }
 }

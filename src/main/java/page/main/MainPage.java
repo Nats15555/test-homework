@@ -18,7 +18,7 @@ import page.message.MessagePageInterface;
 import page.music.MusicPage;
 import page.photo.PhotoPage;
 import page.post.PostPage;
-import page.user.UserPage;
+import page.settings.SettingsPage;
 
 
 public class MainPage implements LoadableComponent {
@@ -34,6 +34,7 @@ public class MainPage implements LoadableComponent {
     private final By languageList = By.xpath("//*[@class=\"ph-lang-select svelte-mvi5hm\"]");
     private final By languageEng = By.xpath("//*[contains(@class,\"ph-lang-menu svelte-1jnupg5\")]/div[2]/div[1]");
     private final By languageRu = By.xpath("//*[contains(@class,\"ph-lang-menu svelte-1jnupg5\")]/div[1]/div[1]");
+    private final By xpathSettings = By.xpath("//*[contains(@data-l,\"t,closed_profile\")]");
     private PostBlock postBlock = null;
 
     public MainPage(WebDriver driver) {
@@ -55,36 +56,38 @@ public class MainPage implements LoadableComponent {
         return new LoginPage(driver);
     }
 
-    public MainPage clickLanguageList(){
+    public MainPage clickLanguageList() {
         chekLoadComponent(driver, 5, languageList);
         driver.findElement(languageList).click();
         return this;
     }
 
-    public MainPage clickLanguageEng(){
+    public MainPage clickLanguageEng() {
         chekLoadComponent(driver, 5, languageEng);
         driver.findElement(languageEng).click();
         return new MainPage(driver);
     }
 
-    public boolean chekLanguage(String language){
+    public boolean chekLanguage(String language) {
         chekLoadComponent(driver, 5, languageList);
         return driver.findElement(languageList).getText().equals(language);
     }
 
-    public MainPage clickLanguageRu(){
+    public MainPage clickLanguageRu() {
         chekLoadComponent(driver, 5, languageRu);
         driver.findElement(languageRu).click();
         return new MainPage(driver);
     }
 
-    public UserPage openUserPage(){
-        chekLoadComponent(driver, 5, By.xpath(MainPageRightNavigator.PAGE.getXpath()));
-        driver.findElement(By.xpath(MainPageRightNavigator.PAGE.getXpath())).click();
-        return new UserPage(driver);
+    public SettingsPage clickSettingsPage() {
+        chekLoadComponent(driver, 5, xpathTopBar);
+        driver.findElement(xpathTopBar).click();
+        chekLoadComponent(driver, 5, xpathSettings);
+        driver.findElement(xpathSettings).click();
+        return new SettingsPage(driver);
     }
 
-    public GroupPage openGroupPage(){
+    public GroupPage openGroupPage() {
         chekLoadComponent(driver, 5, By.xpath(MainPageRightNavigator.GROUPS.getXpath()));
         driver.findElement(By.xpath(MainPageRightNavigator.GROUPS.getXpath())).click();
         return new GroupPage(driver);
@@ -98,12 +101,12 @@ public class MainPage implements LoadableComponent {
     }
 
     public MessagePageInterface openMessageFriendOnMainPage() {
-        chekLoadComponent(driver,5, firstOnlineFriend);
+        chekLoadComponent(driver, 5, firstOnlineFriend);
         Actions action = new Actions(driver);
         WebElement hiddenMessageButton = driver.findElement(firstOnlineFriend);
         action.moveToElement(hiddenMessageButton);
         action.perform();
-        chekLoadComponent(driver,5, mailButton);
+        chekLoadComponent(driver, 5, mailButton);
         driver.findElement(mailButton).click();
         MessageFactory massageFactory = new MessageFactory();
         return massageFactory.get(driver);
@@ -133,7 +136,7 @@ public class MainPage implements LoadableComponent {
         return new PostPage(driver);
     }
 
-    public boolean checkPostDisplay(Post post){
+    public boolean checkPostDisplay(Post post) {
         postBlock = new PostBlock(driver);
         return postBlock.getAllPost().contains(post);
     }

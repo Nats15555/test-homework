@@ -4,10 +4,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import page.LoadableComponent;
+import page.main.MainPage;
 
 public class SettingsPage implements LoadableComponent {
     private final WebDriver driver;
-    private final By xpathPersonalData = By.className("user-settings_i_n");
+    private final By xpathPersonalData = By.className("user-settings_i_cnt");
+    private final By xpathImgOK = By.className("toolbar_logo_img");
 
     public SettingsPage(WebDriver driver) {
         this.driver = driver;
@@ -26,4 +28,14 @@ public class SettingsPage implements LoadableComponent {
                 && driver.findElement(xpathPersonalData).getText().contains(surname);
     }
 
+    public SettingsPage refresh(){
+        driver.navigate().refresh();
+        return new SettingsPage(driver);
+    }
+
+    public MainPage clickImgOK(){
+        chekLoadComponent(driver,5,xpathImgOK);
+        driver.findElement(xpathImgOK).click();
+        return new MainPage(driver);
+    }
 }
