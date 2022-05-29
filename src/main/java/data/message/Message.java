@@ -13,7 +13,7 @@ public class Message {
      * Конструктор для создания сообщения
      *
      * @param massageContent Само сообщения
-     * @param receivingTime Время когда оно было получено
+     * @param receivingTime  Время когда оно было получено
      */
     public Message(String massageContent, String receivingTime) {
         this.massageContent = massageContent;

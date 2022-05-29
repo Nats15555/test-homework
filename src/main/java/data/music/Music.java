@@ -12,7 +12,7 @@ public class Music {
     /**
      * Конструктор для создания песни
      *
-     * @param name Название песни
+     * @param name   Название песни
      * @param author Автор песни
      */
     public Music(String name, String author) {

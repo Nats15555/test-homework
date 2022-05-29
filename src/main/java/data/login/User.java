@@ -46,7 +46,7 @@ public class User {
          * @param login
          * @return
          */
-        public UserBuilder withLogin(String login){
+        public UserBuilder withLogin(String login) {
             user.login = login;
             return this;
         }
@@ -57,7 +57,7 @@ public class User {
          * @param password
          * @return
          */
-        public UserBuilder withPassword(String password){
+        public UserBuilder withPassword(String password) {
             user.password = password;
             return this;
         }
@@ -68,7 +68,7 @@ public class User {
          * @param nameAndSurname
          * @return
          */
-        public UserBuilder withNameAndSurname(String nameAndSurname){
+        public UserBuilder withNameAndSurname(String nameAndSurname) {
             user.nameAndSurname = nameAndSurname;
             return this;
         }
@@ -78,7 +78,7 @@ public class User {
          *
          * @return
          */
-        public User build(){
+        public User build() {
             return user;
         }
     }

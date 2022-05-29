@@ -19,7 +19,7 @@ public interface LoadableComponent {
 
     default void chekLoadComponents(WebDriver driver, long timeoutInSeconds, Collection<By> checkedElement) {
         WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
-        for(By temp: checkedElement){
+        for (By temp : checkedElement) {
             wait.until(ExpectedConditions.visibilityOfElementLocated(temp));
         }
     }

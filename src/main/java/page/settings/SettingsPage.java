@@ -15,26 +15,26 @@ public class SettingsPage implements LoadableComponent {
         this.driver = driver;
     }
 
-    public WrapperChangePersonalData openChangePersonalData(){
-        chekLoadComponent(driver,5,xpathPersonalData);
+    public WrapperChangePersonalData openChangePersonalData() {
+        chekLoadComponent(driver, 5, xpathPersonalData);
         driver.findElement(xpathPersonalData).click();
         return new WrapperChangePersonalData(driver);
     }
 
-    public boolean checkChangePersonalData(String name, String surname){
-        chekLoadComponent(driver,5,xpathPersonalData);
+    public boolean checkChangePersonalData(String name, String surname) {
+        chekLoadComponent(driver, 5, xpathPersonalData);
         System.out.println(driver.findElement(xpathPersonalData).getText());
         return driver.findElement(xpathPersonalData).getText().contains(name)
                 && driver.findElement(xpathPersonalData).getText().contains(surname);
     }
 
-    public SettingsPage refresh(){
+    public SettingsPage refresh() {
         driver.navigate().refresh();
         return new SettingsPage(driver);
     }
 
-    public MainPage clickImgOK(){
-        chekLoadComponent(driver,5,xpathImgOK);
+    public MainPage clickImgOK() {
+        chekLoadComponent(driver, 5, xpathImgOK);
         driver.findElement(xpathImgOK).click();
         return new MainPage(driver);
     }

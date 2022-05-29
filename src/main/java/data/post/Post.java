@@ -35,6 +35,7 @@ public class Post {
 
     /**
      * Получение теста поста
+     *
      * @return
      */
     public String getContent() {
@@ -43,6 +44,7 @@ public class Post {
 
     /**
      * Изменяем текст поста
+     *
      * @param content новый текст поста
      */
     public void setContent(String content) {

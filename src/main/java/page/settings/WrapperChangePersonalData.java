@@ -15,14 +15,14 @@ public class WrapperChangePersonalData implements LoadableComponent {
 
     public WrapperChangePersonalData(WebDriver driver) {
         this.driver = driver;
-        chekLoadComponent(driver,5, By.className("modal-new_center"));
+        chekLoadComponent(driver, 5, By.className("modal-new_center"));
         changePersonalDataBlock = driver.findElement(By.className("modal-new_center"));
     }
 
-    public SettingsPage changeNameAndSurname(String name, String surname){
-        chekLoadComponent(driver,5, fieldTxtName);
-        chekLoadComponent(driver,5, fieldTxtSurname);
-        chekLoadComponent(driver,5, buttonSave);
+    public SettingsPage changeNameAndSurname(String name, String surname) {
+        chekLoadComponent(driver, 5, fieldTxtName);
+        chekLoadComponent(driver, 5, fieldTxtSurname);
+        chekLoadComponent(driver, 5, buttonSave);
         changePersonalDataBlock.findElement(fieldTxtName).clear();
         changePersonalDataBlock.findElement(fieldTxtName).sendKeys(name);
         changePersonalDataBlock.findElement(fieldTxtSurname).clear();
