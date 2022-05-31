@@ -11,11 +11,9 @@ import test.page.message.TestSendParameterizedMessage;
 import test.page.music.TestAddMusic;
 import test.page.music.TestDeleteMusic;
 import test.page.photo.TestAddPhoto;
-import test.page.post.TestPost;
-import test.page.user.TestNameChange;
 
 @Suite
-@SelectClasses({TestNameChange.class, TestPost.class, TestLoginPage.class, TestSendMessageUser.class, TestSendParameterizedMessage.class
+@SelectClasses({ TestLoginPage.class, TestSendMessageUser.class, TestSendParameterizedMessage.class
         , TestAddMusic.class, TestDeleteMusic.class, TestAddPhoto.class, TestAddGroup.class, LanguageTest.class})
 public class AllSuiteTest {
 }
