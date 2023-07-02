@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 import data.music.Music;
 import page.LoadableComponent;
 
-public class MusicPage implements LoadableComponent {//+
+public class MusicPage implements LoadableComponent {
     private final WebDriver driver;
     private final MusicBlock musicBlock;
     private final By xpathClickMyMusic = By.xpath("//*[contains(@data-tsid,\"library\")]");

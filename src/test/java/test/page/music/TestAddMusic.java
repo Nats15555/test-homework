@@ -27,5 +27,4 @@ public class TestAddMusic extends AbstractTest {
         List<Music> musicList = musicPage.addTreeSongs();
         assertTrue(musicPage.clickMyMusic().checkCountSongs(musicList, 3));
     }
-
 }

@@ -11,7 +11,6 @@ import test.AbstractTest;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestSendParameterizedMessage extends AbstractTest {
-
     @BeforeEach
     public void login() {
         mainPage = loginPage.doLogin(user);

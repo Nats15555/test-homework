@@ -7,7 +7,7 @@ import data.post.Post;
 import page.LoadableComponent;
 import page.main.MainPage;
 
-public class PostPage implements LoadableComponent {//+
+public class PostPage implements LoadableComponent {
 
     private final WebDriver driver;
     private final By postBlock = By.xpath("//*[contains(@class,\"posting_itx emoji-tx h-mod js-ok-e js-posting-itx ok-posting-handler\")]");

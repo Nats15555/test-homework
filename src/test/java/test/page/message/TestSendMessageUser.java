@@ -27,5 +27,4 @@ public class TestSendMessageUser extends AbstractTest {
                 .sendMessage(message)
                 .chekMessage(message));
     }
-
 }

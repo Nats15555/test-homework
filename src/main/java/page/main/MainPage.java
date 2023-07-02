@@ -10,7 +10,6 @@ import data.login.User;
 import data.post.Post;
 import page.LoadableComponent;
 import page.group.GroupPage;
-import page.idea.IdeaPage;
 import page.login.LoginPage;
 import page.message.MessageFactory;
 import page.message.MessagePage;
@@ -18,7 +17,6 @@ import page.message.MessagePageInterface;
 import page.music.MusicPage;
 import page.photo.PhotoPage;
 import page.post.PostPage;
-import page.settings.SettingsPage;
 
 
 public class MainPage implements LoadableComponent {
@@ -27,7 +25,6 @@ public class MainPage implements LoadableComponent {
     private final By xpathTopBar = By.xpath("//*[contains(@class,\"ucard-mini toolbar_ucard js-toolbar-menu\")]");
     private final By logOutButton = By.xpath("//*[contains(@data-l,\"t,logout\")]");
     private final By hiddenLogOutButton = By.id("hook_FormButton_logoff.confirm_not_decorate");
-    private final By ideaButton = By.xpath("//*[contains(@class,\"add-stub al add-stub__hor __motivator-showcase-btn\")]");
     private final By postField = By.xpath("//*[contains(@class,\"pf-head_itx\")]");
     private final By firstOnlineFriend = By.xpath("//a[contains(@class,\"online-fr_link\")]");
     private final By mailButton = By.xpath("//*[contains(@data-l,\"t,sendMessage\")]");
@@ -83,14 +80,6 @@ public class MainPage implements LoadableComponent {
         return new MainPage(driver);
     }
 
-    public SettingsPage clickSettingsPage() {
-        chekLoadComponent(driver, 5, xpathTopBar);
-        driver.findElement(xpathTopBar).click();
-        chekLoadComponent(driver, 5, xpathSettings);
-        driver.findElement(xpathSettings).click();
-        return new SettingsPage(driver);
-    }
-
     public GroupPage openGroupPage() {
         chekLoadComponent(driver, 5, By.xpath(MainPageRightNavigator.GROUPS.getXpath()));
         driver.findElement(By.xpath(MainPageRightNavigator.GROUPS.getXpath())).click();
@@ -126,12 +115,6 @@ public class MainPage implements LoadableComponent {
         chekLoadComponent(driver, 5, By.xpath(MainPageRightNavigator.PHOTO.getXpath()));
         driver.findElement(By.xpath(MainPageRightNavigator.PHOTO.getXpath())).click();
         return new PhotoPage(driver);
-    }
-
-    public IdeaPage openIdeaPage() {
-        chekLoadComponent(driver, 5, ideaButton);
-        driver.findElement(ideaButton).click();
-        return new IdeaPage(driver);
     }
 
     public PostPage openPostPage() {

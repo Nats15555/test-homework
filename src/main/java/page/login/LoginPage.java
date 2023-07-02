@@ -27,12 +27,4 @@ public class LoginPage implements LoadableComponent {
         driver.findElement(LOGIN_BTN).click();
         return new MainPage(driver);
     }
-
-    public MainPage doLogin(String login, String password) {
-        User user = new User.UserBuilder()
-                .withLogin(login)
-                .withPassword(password)
-                .build();
-        return doLogin(user);
-    }
 }

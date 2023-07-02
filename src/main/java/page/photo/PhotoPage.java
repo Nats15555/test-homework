@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 
 import page.LoadableComponent;
 
-public class PhotoPage implements LoadableComponent {//+
+public class PhotoPage implements LoadableComponent {
     private final WebDriver driver;
     private final By loadingBox = By.cssSelector("div#hook_Block_PhotoVitrineBlock div input[type=file]");
     private final By correctDownloadMessage = By.xpath("//*[contains(@data-l,\"t,create-post\")]");

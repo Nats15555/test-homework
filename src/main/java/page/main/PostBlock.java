@@ -12,7 +12,7 @@ import org.openqa.selenium.interactions.Actions;
 import data.post.Post;
 import page.LoadableComponent;
 
-public class PostBlock implements LoadableComponent {//+
+public class PostBlock implements LoadableComponent {
     private final WebDriver driver;
     private final WebElement webPostElement;
     private final By xpathPosts = By.xpath("//*[contains(@data-l,\"t,.c\")]");

@@ -9,7 +9,7 @@ public class MessageFactory {
         if (isButtonPresent(driver)) {
             return new MessagePage(driver);
         }
-        return null;//потому что у нас всего 1 страница
+        return null;
     }
 
     private boolean isButtonPresent(WebDriver driver) {

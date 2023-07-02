@@ -14,6 +14,6 @@ import test.page.photo.TestAddPhoto;
 
 @Suite
 @SelectClasses({ TestLoginPage.class, TestSendMessageUser.class, TestSendParameterizedMessage.class
-        , TestAddMusic.class, TestDeleteMusic.class, TestAddPhoto.class, TestAddGroup.class, LanguageTest.class})
+        , TestAddMusic.class, TestDeleteMusic.class, TestAddPhoto.class, TestAddGroup.class})
 public class AllSuiteTest {
 }
