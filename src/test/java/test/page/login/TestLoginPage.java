@@ -11,12 +11,6 @@ import test.AbstractTest;
 
 public class TestLoginPage extends AbstractTest {
 
-    protected final User user = new User.UserBuilder()
-            .withLogin("technopolisBot145")
-            .withPassword("technopolis16")
-            .withNameAndSurname("technopolisBot1 technopolisBot1")
-            .build();
-
     @BeforeEach
     public void login() {
         mainPage = loginPage.doLogin(user);

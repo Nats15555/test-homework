@@ -15,12 +15,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestDeleteMusic extends AbstractTest {
-    protected final User user = new User.UserBuilder()
-            .withLogin("technopolisBot145")
-            .withPassword("technopolis16")
-            .withNameAndSurname("technopolisBot1 technopolisBot1")
-            .build();
-
     @BeforeEach
     public void login() {
         mainPage = loginPage.doLogin(user);

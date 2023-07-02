@@ -29,11 +29,11 @@ public class MainPage implements LoadableComponent {
     private final By hiddenLogOutButton = By.id("hook_FormButton_logoff.confirm_not_decorate");
     private final By ideaButton = By.xpath("//*[contains(@class,\"add-stub al add-stub__hor __motivator-showcase-btn\")]");
     private final By postField = By.xpath("//*[contains(@class,\"pf-head_itx\")]");
-    private final By firstOnlineFriend = By.xpath("//*[contains(@class,\"online-fr_i h-mod online-fr_hide-icons\")]");
+    private final By firstOnlineFriend = By.xpath("//a[contains(@class,\"online-fr_link\")]");
     private final By mailButton = By.xpath("//*[contains(@data-l,\"t,sendMessage\")]");
-    private final By languageList = By.xpath("//*[@class=\"ph-lang-select svelte-mvi5hm\"]");
-    private final By languageEng = By.xpath("//*[contains(@class,\"ph-lang-menu svelte-1jnupg5\")]/div[2]/div[1]");
-    private final By languageRu = By.xpath("//*[contains(@class,\"ph-lang-menu svelte-1jnupg5\")]/div[1]/div[1]");
+    private final By languageList = By.xpath("//a[@hrefattrs=\"st.cmd=userMain&cmd=PopLayer&st.layer.cmd=PopLayerChooseNewLanguage\"]");
+    private final By languageEng = By.xpath("//*[@id=\"hook_Form_PopLayerChooseNewLanguageForm\"]/form/div/a[1]");
+    private final By languageRu = By.xpath("//*[@id=\"hook_Form_PopLayerChooseNewLanguageForm\"]/form/div/div");
     private final By xpathSettings = By.xpath("//*[contains(@data-l,\"t,closed_profile\")]");
     private PostBlock postBlock = null;
 
@@ -57,6 +57,8 @@ public class MainPage implements LoadableComponent {
     }
 
     public MainPage clickLanguageList() {
+        chekLoadComponent(driver, 5, xpathTopBar);
+        driver.findElement(xpathTopBar).click();
         chekLoadComponent(driver, 5, languageList);
         driver.findElement(languageList).click();
         return this;
@@ -69,6 +71,8 @@ public class MainPage implements LoadableComponent {
     }
 
     public boolean chekLanguage(String language) {
+        chekLoadComponent(driver, 5, xpathTopBar);
+        driver.findElement(xpathTopBar).click();
         chekLoadComponent(driver, 5, languageList);
         return driver.findElement(languageList).getText().equals(language);
     }

@@ -8,7 +8,7 @@ import page.LoadableComponent;
 public class GroupPage implements LoadableComponent {
     private final WebDriver driver;
     private final By firstGroupButton = By.xpath("//*[@class=\"button-pro group-join_btn __small __sec\"]");
-    private final By enteredCorrectly = By.xpath("//*[@class=\"tico c-green join-group-result __vis\"]");
+    private final By enteredCorrectly = By.xpath("//span[contains(text(), 'Вы в группе')]");
 
     public GroupPage(WebDriver driver) {
         this.driver = driver;

@@ -12,12 +12,6 @@ import test.AbstractTest;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestSendMessageUser extends AbstractTest {
-
-    protected final User user = new User.UserBuilder()
-            .withLogin("technopolisBot145")
-            .withPassword("technopolis16")
-            .withNameAndSurname("technopolisBot1 technopolisBot1")
-            .build();
     private final String message = new GeneratorMessage().random();
 
     @BeforeEach
@@ -26,7 +20,7 @@ public class TestSendMessageUser extends AbstractTest {
     }
 
     @DisplayName("Тест на отправку рандомного сообщения другу")
-    @Timeout(5)//захотел попробовать таймаут просто
+    @Timeout(5)
     @Test
     public void sendMessage() {
         assertTrue(mainPage.openMessageFriendOnMainPage()

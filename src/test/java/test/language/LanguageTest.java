@@ -10,12 +10,6 @@ import test.AbstractTest;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class LanguageTest extends AbstractTest {
-    protected final User user = new User.UserBuilder()
-            .withLogin("technopolisBot145")
-            .withPassword("technopolis16")
-            .withNameAndSurname("technopolisBot1 technopolisBot1")
-            .build();
-
     @BeforeEach
     public void login() {
         mainPage = loginPage.doLogin(user);
@@ -23,7 +17,7 @@ public class LanguageTest extends AbstractTest {
 
     @DisplayName("Тест на смену языка")
     @Test
-    public void addGroup() {
+    public void c() {
         assertTrue(mainPage.clickLanguageList().clickLanguageEng().chekLanguage("English"));
         mainPage.clickLanguageList().clickLanguageRu();
     }

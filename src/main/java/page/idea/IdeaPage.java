@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 
 import page.LoadableComponent;
 
-public class IdeaPage implements LoadableComponent {//+
+public class IdeaPage implements LoadableComponent {
     private final WebDriver driver;
     private final By textIdea = By.xpath("//*[contains(@class,\"feeling-layer_form\")]/div[position() = 1]/div/div/textarea");
     private final By buttonIdea = By.xpath("//*[contains(@class,\"feeling-layer_form\")]/div[position() = 2]/button");

@@ -14,12 +14,6 @@ import data.login.User;
 import test.AbstractTest;
 
 public class TestAddPhoto extends AbstractTest {
-
-    protected final User user = new User.UserBuilder()
-            .withLogin("technopolisBot145")
-            .withPassword("technopolis16")
-            .withNameAndSurname("technopolisBot1 technopolisBot1")
-            .build();
     private final Path photoAvatarPath = new File("src/main/resources/avatar.png").getAbsoluteFile().toPath();
 
     @BeforeEach

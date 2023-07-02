@@ -6,7 +6,6 @@ import java.util.List;
 import generator.RandomData;
 
 public class GeneratorMessage implements RandomData {
-
     private static final List<String> messages = Arrays.asList("Привет","Как ты","Как дела");
 
     @Override
